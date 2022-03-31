@@ -7,3 +7,12 @@ https://docs.phalcon.io/4.0/en/api/phalcon_acl#acl-role
 https://jwt.io/introduction
 
 https://docs.phalcon.io/4.0/en/security-jwt
+
+This is same task as previous JWT task but this time not using phalcon JWT but a 3rd party library
+https://github.com/firebase/php-jwt . Use only "Example" code mentioined in repo readme
+
+We need to use composer to install this library and then use its classes to CREATE and READ token
+This time when you register/signup user then add custom data in jwt as follows
+name
+role
+On validation page get role from this library and then check ACL
