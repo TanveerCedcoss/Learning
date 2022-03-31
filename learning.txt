@@ -1,0 +1,9 @@
+https://www.loom.com/share/a4a852d9fd704f8b8fbbbd0ffe414e6b
+
+https://www.loom.com/share/3edefb5dd1b44de9914ae01815fbd555
+
+https://docs.phalcon.io/4.0/en/api/phalcon_acl#acl-role
+
+https://jwt.io/introduction
+
+https://docs.phalcon.io/4.0/en/security-jwt
