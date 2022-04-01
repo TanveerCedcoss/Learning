@@ -16,3 +16,6 @@ This time when you register/signup user then add custom data in jwt as follows
 name
 role
 On validation page get role from this library and then check ACL
+
+
+https://www.loom.com/share/aa65567d98c144018d06ddb521ac195d
