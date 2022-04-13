@@ -19,3 +19,6 @@ On validation page get role from this library and then check ACL
 
 
 https://www.loom.com/share/aa65567d98c144018d06ddb521ac195d
+
+
+https://university.mongodb.com/courses/M001/about
