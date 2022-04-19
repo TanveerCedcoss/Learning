@@ -20,6 +20,7 @@ On validation page get role from this library and then check ACL
 
 https://www.loom.com/share/aa65567d98c144018d06ddb521ac195d
 
+<<<<<<< HEAD
 Create Order form with following fields
 Choose product
 If have variations then choose specific variation
@@ -38,3 +39,7 @@ https://www.loom.com/share/828c6306bd904be5902e650dfe798fdf
 https://docs.phalcon.io/4.0/en/tutorial-rest
 
 https://docs.phalcon.io/4.0/en/application-micro
+=======
+
+https://university.mongodb.com/courses/M001/about
+>>>>>>> 180eeeac2831dac64d59cad778d55625831fe2a0
