@@ -19,3 +19,22 @@ On validation page get role from this library and then check ACL
 
 
 https://www.loom.com/share/aa65567d98c144018d06ddb521ac195d
+
+Create Order form with following fields
+Choose product
+If have variations then choose specific variation
+Enter customer name
+Choose qty
+List order with filters as follows
+Choose Status : (Paid, Processing, Dispatched, Shipped, Refunded)
+Select date range: (Today, This week, This Month, Custom)
+When custom selected then date range (dont use any calendar, simple textfields to enter from/to dates)
+Obviously you can edit order statuses mentioned in point # 2.a
+
+
+APIs
+
+https://www.loom.com/share/828c6306bd904be5902e650dfe798fdf
+https://docs.phalcon.io/4.0/en/tutorial-rest
+
+https://docs.phalcon.io/4.0/en/application-micro
