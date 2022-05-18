@@ -1,0 +1,9 @@
+The topics are as follows : 
+- Abstract Classes
+- Interfaces
+- Traits
+- Static Methods
+- Static Properties
+- Callback Functions
+- PHP Magic Methods
+- PHP Auto Loader
