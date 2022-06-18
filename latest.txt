@@ -1,0 +1,924 @@
+source_order:
+
+
+{
+	"_id" : "<objectId>",
+	"schema_version" : "<string>",
+	"object_type" : "<string>", //source_order|source_order_items|target_order|target_order_items|source_shipment|source_shipment_items|target_shipment|target_shipment_items|source_creditmemo|source_creditmemo_items|target_creditmemo|target_creditmemo_items|source_cancellation|source_cancellation_items|target_cancellation|target_cancellation_items
+	"order_id" : "<objectId>",
+	"marketplace" : "<string>",
+	"marketplace_shop_id" : "<string>",
+	"marketplace_warehouse_id" : "<string>",
+	"marketplace_status" : "<string>",
+	"source_marketplace_order_id" : "<string>",
+	"user_id" : "<string>",
+	"status" : "<string>",
+	"targets[1,...]" :  [
+		{
+				"marketplace" : "<string>",
+				"title" : "<string>",
+				"order_name" : "<string>",
+				"order_id" : "<string>",
+				"status" : "<string>",
+				"shop_id" : "<string>",
+				"warehouse_id" : "<string>",
+				"error" : "<string>" // in case of any failure
+			
+			}
+		],
+	"items[1,30]"  : {
+		"data" : [
+			{
+				"id" : "<objectId>",
+				"type" : "<string>", // virtual | real 
+				"marketplace_item_id" : "<string>",
+				"sku" : "<string>",
+				"qty" : "<string>",
+				"price" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				"cancelled_qty" : "<string>",
+				"shipped_qty" : "<string>",
+				"return_qty" : "<string>",
+				"refund_qty" : "<string>",
+				"expected_delivery_date":"<date>",
+				"tax" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				"discount" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				"shipping_charge" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				"address_id" : "<string>"
+			}
+		],
+		"next" : { //It only exists if the order items exceed 30 items
+			"type" : "<string>", // order_items
+			"group_id" : "<string>" // order_id
+		}
+
+	},
+	"cancellation_status" : "<string>", // partial | full
+	"return_status" : "<string>", // partial | full
+	"refund_status" : "<string>", // partial | full
+	"shipping_status" : "<string>", // partial | full
+	"currency" : "<string>",
+	"marketplace_currency" : "<string>",
+	"sub_total": {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"total" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"tax" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"taxes" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+	"discounts" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+
+	"discount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"shipping_charge" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"shipping_charges" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+	"customer" : {
+		"name" : "<string>",
+		"email" : "<string>",
+		"id" : "<string>",
+	},
+	"parent_order_id" : "<string>", // for 
+	"replacement_order_id" : "<string>",
+	"s3_object_id" : "<string>", //aws s3 bucket used to store complete details sent by the marketplace for future reference as all information is not used for making our schema
+	"created_at" : "<date>",
+	"updated_at" : "<date>",
+	"source_created_at" : "<date>",
+	"source_updated_at" : "<date>",
+	"attributes":[ // for additional attributes
+		{
+			"key":"<string>",
+			"value" : "<string>"
+		}
+	],
+	"tags":"<string>", // comma separated multiple tags
+	"shipping_address" : [
+		{
+			"_id" : "<objectId>",
+			"first_name" : "<string>",
+			"middle_name" : "<string>",
+			"last_name" : "<string>",
+			"address" : "<string>",
+			"city" : "<string>",
+			"state" : "<string>",
+			"zip" : "<string>",
+			"country" : "<string>",
+			"longitude" : "<string>",
+			"latitude" : "<string>",
+			"state_code" : "<string>",
+			"country_code" : "<string>",
+		}
+	],
+	"billing_address" : {
+		"_id" : "<objectId>",
+		"first_name" : "<string>",
+		"middle_name" : "<string>",
+		"last_name" : "<string>",
+		"address" : "<string>",
+		"city" : "<string>",
+		"state" : "<string>",
+		"zip" : "<string>",
+		"country" : "<string>",
+		"longitude" : "<string>",
+		"latitude" : "<string>",
+		"state_code" : "<string>",
+		"country_code" : "<string>",
+	},
+	"shipping_method" : "<string>",
+
+	"discount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"shipping_charge" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+}
+
+
+order_items
+{
+	"_id" : "<objectId>",
+	"schema_version" : "<string>",  
+	"object_type" : "<string>", // source_order_items | target_order_items
+	"order_id" : "<string>",
+	"is_included_in_parent" : "<bool>",
+	"type" : "<string>", // virtual | real 
+	"marketplace_item_id" : "<string>", // source or target marketplace id
+	"sku" : "<string>",
+	"qty" : "<string>",
+	"weight" : "",
+	"price" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"currency" : "<string>",
+	"marketplace_currency" : "<string>",
+	"cancelled_qty" : "<string>",
+	"shipped_qty" : "<string>",
+	"return_qty" : "<string>",
+	"refund_qty" : "<string>",
+	"expected_delivery_date":"<date>",
+	"taxes" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+	"tax" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"discounts" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+	"discount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"shipping_charge" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"shipping_charges" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	]
+}
+
+
+
+
+Source Shipment:
+
+"discount" : {
+	"price" : "<string>",
+	"marketplace_price" : "<string>"
+},
+"shipping_charge" : {
+	"price" : "<string>",
+	"marketplace_price" : "<string>"
+},
+
+{
+	"_id" : "<objectId>",
+	"schema_version" : "<string>",
+	"type" : "<string>", //source_shipment
+	"order_id": "<objectId>",
+	"source_order_id": "<string>",
+	"shipment_id" :  "<objectId>",
+	"source_shipment_id" : "<string>",
+	"user_id" : "<string>",
+	"status" : "<string>",
+	"targets[1,20]" : [
+		{
+				"marketplace" : "<string>",
+				"title" : "<string>",
+				"order_name" : "<string>",
+				"order_id" : "<string>",
+				"status" : "<string>",
+				"shop_id" : "<string>",
+				"warehouse_id" : "<string>"
+			
+		}
+	],
+	"items[1,30]"  : {
+		"data" : [
+			{
+				"id" : "<objectId>",
+				"type" : "<string>", // virtual | real 
+				"marketplace_item_id" : "<string>",
+				"name" : "<string>",
+				"sku" : "<string>",
+				"qty" : "<string>",
+				"weight" : "<string>",
+				"price" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				"shipped_qty" : "<string>",
+				"expected_delivery_date":"<date>",
+				"tax" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				
+				"discount" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				"shipping_charge" : {
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				},
+				
+			}
+		],
+		"next" : {
+			"type" : "<string>", // order_items
+			"group_id" : "<string>" // order_id
+		}
+
+	},
+	"shipping_status" : "<string>",
+	"shipping_method" : {
+		"code" :"<string>",
+		"title" : "<string>",
+		"carrier" : "<srting>"
+	},
+	"tracking" : [
+		{
+			"company" : "<string>",
+			"number" : "<string>",
+			"title" : "<string>",
+			"url" : "<string>"
+		}
+	],
+	"shipping_label" : "<string>",
+	"customer_note" : "<string>",
+	"currency" : "<string>",
+	"marketplace_currency" : "<string>",
+	"shipping_charge" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"customer" : {
+		"name" : "<string>",
+		"email" : "<string>",
+		"id" : "<string>",
+	},
+	"shipping_address" : {
+		"first_name" : "<string>",
+		"middle_name" : "<string>",
+		"last_name" : "<string>",
+		"address" : "<string>",
+		"city" : "<string>",
+		"state" : "<string>",
+		"zip" : "<string>",
+		"country" : "<string>",
+		"longitude" : "<string>",
+		"latitude" : "<string>",
+		"state_code" : "<string>",
+		"country_code" : "<string>",
+	},
+	"billing_address" : {
+		"first_name" : "<string>",
+		"middle_name" : "<string>",
+		"last_name" : "<string>",
+		"address" : "<string>",
+		"city" : "<string>",
+		"state" : "<string>",
+		"zip" : "<string>",
+		"country" : "<string>",
+		"longitude" : "<string>",
+		"latitude" : "<string>",
+		"state_code" : "<string>",
+		"country_code" : "<string>",
+	},
+	"is_billing_same_as_shipping" : "<bool>",
+	"created_at" : "<date>",
+	"updated_at" : "<date>",
+	"soruce_created_at" : "<date>",
+	"source_updated_at" : "<date>",
+
+	
+
+}
+
+
+Large Count Objects:
+
+
+"discount" : {
+	"price" : "<string>",
+	"marketplace_price" : "<string>"
+},
+"shipping_charge" : {
+	"price" : "<string>",
+	"marketplace_price" : "<string>"
+},
+{
+	"_id" : "<objectId>",
+	"schema_version" : "<string>",
+	"type" : "<string>", // order_targets|order_items
+	"order_id" : "<string>",
+	"is_included_in_parent" : "<bool>"
+}
+
+
+Target Order:
+
+{
+
+	"discount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"shipping_charge" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"_id" : "<objectId>",
+	"schema_version" : "<string>",
+	"type" : "<string>", //target_order
+	"order_id" : "<string>",
+	"marketplace" : "<string>", // Target Marketplace
+	"marketplace_shop_id" : "<string>", // Target marketplace shop id
+	"marketplace_warehouse_id" : "<string>", // Target marketplace warehouse id
+	"marketplace_status" : "<string>", // Target Marketplace Status
+	"marketplace_order_id" : "<string>", // Target Marketplace order id
+	"user_id" : "<string>",
+	"status" : "<string>",
+	"items" : [
+		{
+
+			"discount" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"shipping_charge" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"id" : "<string>", // cedcommerce item id 
+			"marketplace_item_id" : "<string>", // target marketplace order id
+			"sku" : "<string>",
+			"qty" : "<string>",
+			"price" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>" // price on target marketplace
+			},
+			"currency" : "<string>",
+			"marketplace_currency" : "<string>",
+			"cancelled_qty" : "<string>",
+			"shipped_qty" : "<string>",
+			"return_qty" : "<string>",
+			"refund_qty" : "<string>",
+			"taxes" : [
+				{
+					"code" : "<string>",
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				}
+			],
+			"tax" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"discounts" : [
+				{
+					"code" : "<string>",
+					"price" : "<string>",
+					"marketplace_price" : "<string>"
+				}
+			],
+			"discount" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			}
+		}
+	],
+	"cancellation_status" : "<string>",
+	"return_status" : "<string>",
+	"refund_status" : "<string>",
+	"shipping_status" : "<string>",
+	"currency" : "<string>",
+	"marketplace_currency" : "<string>",
+	"sub_total": "<string>",
+	"total" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"tax" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"taxes" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+	"discounts" : [
+		{
+			"code" : "<string>",
+			"price" : "<string>",
+			"marketplace_price" : "<string>"
+		}
+	],
+	"discount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"customer" : {
+		"name" : "<string>",
+		"email" : "<string>",
+		"id" : "<string>",
+	},
+	"shipping_address" : {
+		"first_name" : "<string>",
+		"middle_name" : "<string>",
+		"last_name" : "<string>",
+		"address" : "<string>",
+		"city" : "<string>",
+		"state" : "<string>",
+		"zip" : "<string>",
+		"country" : "<string>",
+		"longitude" : "<string>",
+		"latitude" : "<string>",
+		"state_code" : "<string>",
+		"country_code" : "<string>",
+	},
+	"billing_address" : {
+		"first_name" : "<string>",
+		"middle_name" : "<string>",
+		"last_name" : "<string>",
+		"address" : "<string>",
+		"city" : "<string>",
+		"state" : "<string>",
+		"zip" : "<string>",
+		"country" : "<string>",
+		"longitude" : "<string>",
+		"latitude" : "<string>",
+		"state_code" : "<string>",
+		"country_code" : "<string>",
+	},
+	"is_billing_same_as_shipping" : "<bool>",
+	"source_parent_order_id" : "<string>",
+	"source_replacement_order_id" : "<string>",
+
+}
+
+
+
+Source Credit Memo:
+
+{
+	"_id" : "<objectId>",
+	"type" : "source_creditmemo",
+	"order_id": "<string>",
+	"creditmemo_id" : "<string>",
+	"marketplace_shipment_id" : "<string>",
+	"marketplace" : "<string>",
+	"marketplace_shop_id" : "<string>",
+	"marketplace_warehouse_id" : "<string>",
+	"marketplace_status" : "<string>",
+	"source_marketplace_order_id" : "<string>",
+	"user_id" : "<string>",
+	"status" : "<string>",
+	"targets" : [
+		{
+			"marketplace" : "<string>",
+			"title" : "<string>",
+			"order_name" : "<string>",
+			"order_id" : "<string>",
+			"status" : "<string>",
+			"shop_id" : "<string>",
+			"warehouse_id" : "<string>"
+		}
+	],
+	"items" : [
+		{
+			"id" : "<string>", // cedcommerce item id 
+			"marketplace_item_id" : "<string>",
+			"sku" : "<string>",
+			"qty" : "<string>",
+			"price" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"refund_amount" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"currency" : "<string>",
+			"marketplace_currency" : "<string>",
+			"weight" : "<string>",
+		}
+	],
+
+	"customer_note": "<string>",
+	"refund_amount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"currency" : "<string>",
+	"marketplace_currency" : "<string>"
+
+}
+
+
+Target Credit Memo:
+
+{
+	"_id" : "<objectId>",
+	"type" : "target_creditmemo",
+	"order_id": "<string>",
+	"creditmemo_id" : "<string>",
+	"marketplace_shipment_id" : "<string>",
+	"marketplace" : "<string>",
+	"marketplace_shop_id" : "<string>",
+	"marketplace_warehouse_id" : "<string>",
+	"marketplace_status" : "<string>",
+	"source_marketplace_order_id" : "<string>",
+	"user_id" : "<string>",
+	"status" : "<string>",
+	"items" : [
+		{
+			"id" : "<string>", // cedcommerce item id 
+			"marketplace_item_id" : "<string>",
+			"sku" : "<string>",
+			"qty" : "<string>",
+			"price" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"refund_amount" : {
+				"price" : "<string>",
+				"marketplace_price" : "<string>"
+			},
+			"currency" : "<string>",
+			"marketplace_currency" : "<string>",
+			"weight" : "<string>",
+		}
+	],
+
+	"customer_note": "<string>",
+	"refund_amount" : {
+		"price" : "<string>",
+		"marketplace_price" : "<string>"
+	},
+	"currency" : "<string>",
+	"marketplace_currency" : "<string>"
+
+}
+
+
+User Details:
+
+
+
+{
+        "_id" : ObjectId("626001cd99115a0aa74bc94e"),
+        "status" : 2,
+        "sqlConfig" : null,
+        "username" : "Pushpanjali",
+        "email" : "onyxshop@gmail.com",
+        "password" : "c45e9b2de7ecf997e5ca5feb1bb43982",
+        "role_id" : ObjectId("60b8d76242a268792831fcf4"),
+        "confirmation" : 1,
+        "user_id" : "626001cd99115a0aa74bc94e",
+        "shops" : [
+                {
+                        "id" : 1,
+                        "username" : "Pushpanjali",
+                        "shop_name" : "onyx-shop",
+                        "email" : "onyxshop@gmail.com",
+                        "currency" : "USD",
+                        "apps" : [
+                                {
+                                        "code" : "onyx_amazon",
+					"webhooks" : [
+							{
+								"dynamo_webhook_id" : "installation_id_item_created",
+								"code" : "product_create"
+							},
+							{
+								"dynamo_webhook_id" : "installation_id_item_updated",
+								"code" : "product_update"
+							},
+							{
+								"dynamo_webhook_id" : "installation_id_item_deleted",
+								"code" : "product_delete"
+							}
+                                                 ]														
+                                }
+                        ],
+                        "remote_shop_id" : "76",
+                        "marketplace" : "onyx",
+                        "installation_id" : "mock_installation_id",
+                        "catalog_id" : "2y0vl7s2j",
+                        "materialCatalog" : "ygKd6V2P1n",
+                        "site" : "s-123",
+                        "_id" : "166",
+                        "created_at" : ISODate("2022-04-20T12:51:26.407Z"),
+                        "updated_at" : ISODate("2022-04-20T12:51:26.407Z"),
+                        "warehouses" : [ ],
+                        "targets" : [
+                                {
+                                        "shop_id" : "167",
+                                        "code" : "amazon"
+                                }
+                        ]
+                },
+                {
+                        "apps" : [
+                                {
+									"code" : "amazon"
+                                }
+                        ],
+                        "remote_shop_id" : "77",
+                        "marketplace" : "amazon",
+                        "currency" : "USD",
+                        "warehouses" : [
+                                {
+                                        "region" : "EU",
+                                        "marketplace_id" : "A21TJRUUN4KGV",
+                                        "seller_id" : "A3VSMOL1YWESR0",
+                                        "status" : "active",
+                                        "token_generated" : true,
+                                        "_id" : "167"
+                                }
+                        ],
+                        "_id" : "167",
+                        "created_at" : ISODate("2022-04-20T12:52:46.152Z"),
+                        "updated_at" : ISODate("2022-04-20T12:52:46.152Z"),
+                        "sources" : [
+                                {
+                                        "shop_id" : "153",
+                                        "code" : "onyx"
+                                }
+                        ]
+                }
+        ]
+}
+
+
+
+Apps shop:
+
+{
+        "_id" : "92",
+        "apps" : [
+                {
+                        "installation_id" : "mock_installation_id",
+                        "shop_name" : "onyx-shop",
+                        "token" : "t#jEu_nUA{y;",
+                        "app_code" : "onyx_amazon",
+                        "app_id" : "1",
+                        "sub_app_id" : "1",
+                        "active" : true
+                }
+        ],
+        "group_code" : "Onyx",
+        "id" : "92",
+        "shop_name" : "onyx-shop",
+        "sub_apps" : [
+                "1"
+        ]
+}
+
+
+
+
+Simple Product:
+
+
+{
+        "_id" : "19105",
+        "additional_images" : [ ],
+        "app_codes" : [
+                "onyx_amazon"
+        ],
+        "brand" : "",
+        "container_id" : "lCqcwtSPh8",
+        "created_at" : "2022-04-19 08:31:46",
+        "currency_code" : "USD",
+        "default_locale" : "en-US",
+        "description" : "",
+        "id" : "19105",
+        "low_sku" : "testdupbar1",
+        "marketplace" : [
+                {
+                        "shop_id" : "162",
+                        "direct" : true,
+                        "source_product_id" : "lCqcwtSPh8",
+                        "source_marketplace" : "onyx",
+                        "title" : "Testing Dup Bar 2",
+                        "sku" : "testdupbar1"
+                }
+        ],
+        "shop_id" : "162",
+        "sku" : "testdupbar1",
+        "source_marketplace" : "onyx",
+        "source_product_id" : "lCqcwtSPh8",
+        "source_sku" : "testdupbar1",
+        "title" : "Testing Dup Bar 2",
+        "type" : "simple",
+        "user_id" : "625e72e7e0c3fd118110c33c",
+        "variant_attributes" : [ ],
+        "visibility" : "Catalog and Search"
+}
+
+
+
+Variation Product:
+
+{
+        "_id" : "19236",
+        "app_codes" : [
+                "shopify_amazon"
+        ],
+        "barcode" : "",
+        "brand" : "vasustore123",
+        "compare_at_price" : null,
+        "container_id" : "7300288315564",
+        "created_at" : "2022-05-26 06:54:22",
+        "currency_code" : null,
+        "default_locale" : null,
+        "description" : "New var dex",
+        "fulfillment_service" : "manual",
+        "grams" : 0,
+        "group_id" : "7300288315564",
+        "handle" : "new-var",
+        "id" : "19236",
+        "inventory_item_id" : "43715304259756",
+        "inventory_management" : "shopify",
+        "inventory_policy" : "DENY",
+        "inventory_tracked" : true,
+        "is_imported" : 1,
+        "locations" : [
+                {
+                        "admin_graphql_api_id" : "gid://shopify/InventoryLevel/99434070188?inventory_item_id=43715304259756",
+                        "updated_at" : "2022-05-25T07:12:18Z",
+                        "available" : 1,
+                        "location_id" : "65107525804",
+                        "inventory_item_id" : "43715304259756"
+                }
+        ],
+        "low_sku" : "41618399789228",
+        "main_image" : "https://cdn.shopify.com/s/files/1/0598/2289/9372/products/PhotoScan121.jpg?v=1653462739",
+        "position" : 1,
+        "product_type" : "",
+        "published_at" : "2022-05-25T07:12:19Z",
+        "requires_shipping" : true,
+        "shop_id" : "183",
+        "sku" : "41618399789228",
+        "source_created_at" : "2022-05-25T07:12:17Z",
+        "source_marketplace" : "shopify",
+        "source_product_id" : "7300288315564",
+        "source_sku" : "41618399789228",
+        "source_updated_at" : "2022-05-25T07:12:19Z",
+        "tags" : "",
+        "taxable" : true,
+        "template_suffix" : "",
+        "title" : "New var",
+        "type" : "variation",
+        "updated_at" : "2022-05-26T06:54:22+0000",
+        "user_id" : "628dbbee055eaf02fc2603e2",
+        "variant_attributes" : [
+                "Size",
+                "Color"
+        ],
+        "variant_image" : null,
+        "variant_title" : "s / red",
+        "visibility" : "Catalog and Search",
+        "weight" : 0,
+        "weight_unit" : "KILOGRAMS",
+        "marketplace" : [
+                {
+                        "shop_id" : "183",
+                        "source_product_id" : "41618399789228",
+                        "source_marketplace" : "shopify",
+                        "title" : "New var",
+                        "sku" : "41618399789228_9",
+                        "direct" : true
+                },
+                {
+                        "shop_id" : "183",
+                        "source_product_id" : "41618399821996",
+                        "source_marketplace" : "shopify",
+                        "title" : "New var",
+                        "sku" : "41618399821996",
+                        "direct" : true
+                },
+                {
+                        "shop_id" : "183",
+                        "source_product_id" : "41618399854764",
+                        "source_marketplace" : "shopify",
+                        "title" : "New var",
+                        "sku" : "41618399854764",
+                        "direct" : true
+                },
+                {
+                        "shop_id" : "183",
+                        "source_product_id" : "41618399887532",
+                        "source_marketplace" : "shopify",
+                        "title" : "New var",
+                        "sku" : "41618399887532",
+                        "direct" : true
+                }
+        ]
+}
+
+
+
+cif_subscription_destinations
+
+{
+	"_id" : "<objectId>",
+	"schema_version" : "<string>",
+	"schema_version" : "<string>",
+	"schema_version" : "<string>",
+	"schema_version" : "<string>",
+	"schema_version" : "<string>",
+	"schema_version" : "<string>",
+	"schema_version" : "<string>",
+}
+
+cif_subscriptions
+
+
+marketplace_subscription_destinations
+
+
+marketplace_subscriptions
