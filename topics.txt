@@ -7,3 +7,7 @@ The topics are as follows :
 - Callback Functions
 - PHP Magic Methods
 - PHP Auto Loader
+sudo apt update 
+sudo apt upgrade
+sudo apt install python3-pip
+python3 -m pip install eel
