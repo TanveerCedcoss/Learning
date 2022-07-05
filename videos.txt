@@ -11,3 +11,5 @@ Understanding product types
 https://docs.magento.com/user-guide/catalog/product-types.html 
 
 https://docs.magento.com/user-guide/catalog/product-attributes.html 
+
+https://themewagon.com/theme-category/landing-website/
